@@ -83,7 +83,6 @@ namespace CosmosDBTableApi
             {
                 watch.Start();
 
-                // Same latency as inserts, p99 < 15ms, and p50 < 6ms
                 TableOperation deleteOperation = TableOperation.Delete(items[i]);
                 table.Execute(deleteOperation);
 
@@ -95,7 +94,7 @@ namespace CosmosDBTableApi
             }
 
             latencies.Sort();
-            Console.WriteLine($"\n\tp0:{latencies[0]}, p50: {latencies[(int)(numIterations * 0.50)]}, p90: {latencies[(int)(numIterations * 0.90)]}. p99: {latencies[(int)(numIterations * 0.99)]}");
+            Console.WriteLine($"\n\tp0:{latencies[0]}, p50: {latencies[(int)(numIterations * 0.50)]}, p90: {latencies[(int)(numIterations * 0.90)]}");
         }
 
         private void ReplaceElementsInTable(int numIterations, CloudTable table, List<ArticlesEntity> items)
@@ -107,7 +106,6 @@ namespace CosmosDBTableApi
             {
                 watch.Start();
 
-                // Same latency as inserts, p99 < 15ms, and p50 < 6ms
                 items[i].NumberOfArticles = 4;
                 TableOperation replaceOperation = TableOperation.Replace(items[i]);
                 table.Execute(replaceOperation);
@@ -120,7 +118,7 @@ namespace CosmosDBTableApi
             }
 
             latencies.Sort();
-            Console.WriteLine($"\n\tp0:{latencies[0]}, p50: {latencies[(int)(numIterations * 0.50)]}, p90: {latencies[(int)(numIterations * 0.90)]}. p99: {latencies[(int)(numIterations * 0.99)]}");
+            Console.WriteLine($"\n\tp0:{latencies[0]}, p50: {latencies[(int)(numIterations * 0.50)]}, p90: {latencies[(int)(numIterations * 0.90)]}");
         }
 
         private void RetrieveElementsFromTable(int numIterations, CloudTable table, List<ArticlesEntity> items)
@@ -143,7 +141,7 @@ namespace CosmosDBTableApi
             }
 
             latencies.Sort();
-            Console.WriteLine($"\n\tp0:{latencies[0]}, p50: {latencies[(int)(numIterations * 0.50)]}, p90: {latencies[(int)(numIterations * 0.90)]}. p99: {latencies[(int)(numIterations * 0.99)]}");
+            Console.WriteLine($"\n\tp0:{latencies[0]}, p50: {latencies[(int)(numIterations * 0.50)]}, p90: {latencies[(int)(numIterations * 0.90)]}");
         }
 
         private void InsertItemsInTable(int numIterations, CloudTable table, List<ArticlesEntity> items)
@@ -177,7 +175,7 @@ namespace CosmosDBTableApi
             }
 
             latencies.Sort();
-            Console.WriteLine($"\n\tp0:{latencies[0]}, p50: {latencies[(int)(numIterations * 0.50)]}, p90: {latencies[(int)(numIterations * 0.90)]}. p99: {latencies[(int)(numIterations * 0.99)]}");
+            Console.WriteLine($"\n\tp0:{latencies[0]}, p50: {latencies[(int)(numIterations * 0.50)]}, p90: {latencies[(int)(numIterations * 0.90)]}");
         }
 
         private bool CreateTable(CloudTable table)
